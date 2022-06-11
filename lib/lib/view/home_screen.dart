@@ -51,6 +51,10 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
+            child: buildLinhaLife(),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
             child: buildAtributoView(),
           ),
           Padding(
@@ -125,6 +129,26 @@ class _HomeScreenState extends State<HomeScreen> {
         ...List.generate(
           StatusType.values.length,
           (index) => buildLinhaAtributo(StatusType.values[index]),
+        ),
+      ],
+    );
+  }
+
+  Widget buildLinhaLife() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        const Text("Vida do personagem"),
+        TextButton(
+          style: const ButtonStyle(),
+          onPressed: () => setState(() => SampleCrud.decreaseLife()),
+          child: const Icon(Icons.remove),
+        ),
+        Text("${SampleCrud.character.life}"),
+        TextButton(
+          style: const ButtonStyle(),
+          onPressed: () => setState(() => SampleCrud.increaseLife()),
+          child: const Icon(Icons.add),
         ),
       ],
     );

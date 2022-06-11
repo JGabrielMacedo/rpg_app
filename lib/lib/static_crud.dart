@@ -23,4 +23,8 @@ class SampleCrud {
 
   static void decreaseExpertise(ExpertisesType type) =>
       character.expertises?.decreaseExpertise(type);
+
+  static void increaseLife() => character.life++;
+
+  static void decreaseLife() => character.life--;
 }

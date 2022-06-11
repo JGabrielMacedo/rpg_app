@@ -10,6 +10,7 @@ class Character {
   String name;
   int level;
   String fraquezas;
+  int life;
   Attributes? attributes;
   Expertise? expertises;
   List<Equipments>? equipments;
@@ -20,6 +21,7 @@ class Character {
     this.name, {
     this.level = 1,
     this.fraquezas = "",
+    this.life = 30,
     this.attributes,
     this.equipments,
     this.talents,
