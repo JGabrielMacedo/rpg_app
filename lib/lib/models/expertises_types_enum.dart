@@ -1,0 +1,18 @@
+enum ExpertisesType {
+  acrobacia,
+  arcanismo,
+  atletismo,
+  atuacao,
+  enganacao,
+  furtividade,
+  historia,
+  intimidacao,
+  intuicao,
+  investigacao,
+  lidarComAnimais,
+  medicina,
+  persuacao,
+  percepcao,
+  religiao,
+  instintoDeSobrevivencia,
+}
