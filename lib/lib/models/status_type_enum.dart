@@ -1,8 +1,8 @@
 enum StatusType {
-  strength,
-  dexterity,
-  constitution,
-  intelligence,
-  wisdom,
-  charisma,
+  Forca,
+  Destreza,
+  Constituicao,
+  Inteligencia,
+  Sabedoria,
+  Carisma,
 }

@@ -19,62 +19,62 @@ class Attributes {
 
   int getAtribbuteBy(StatusType type) {
     switch (type) {
-      case StatusType.strength:
+      case StatusType.Forca:
         return strength;
-      case StatusType.dexterity:
+      case StatusType.Destreza:
         return dexterity;
-      case StatusType.constitution:
+      case StatusType.Constituicao:
         return constitution;
-      case StatusType.intelligence:
+      case StatusType.Inteligencia:
         return intelligence;
-      case StatusType.wisdom:
+      case StatusType.Sabedoria:
         return wisdom;
-      case StatusType.charisma:
+      case StatusType.Carisma:
         return charisma;
     }
   }
 
   void decreaseAttribute(StatusType statusType) {
     switch (statusType) {
-      case StatusType.strength:
-        strength++;
+      case StatusType.Forca:
+        strength--;
         break;
-      case StatusType.dexterity:
-        dexterity++;
+      case StatusType.Destreza:
+        dexterity--;
         break;
-      case StatusType.constitution:
-        constitution++;
+      case StatusType.Constituicao:
+        constitution--;
         break;
-      case StatusType.intelligence:
-        intelligence++;
+      case StatusType.Inteligencia:
+        intelligence--;
         break;
-      case StatusType.wisdom:
-        wisdom++;
+      case StatusType.Sabedoria:
+        wisdom--;
         break;
-      case StatusType.charisma:
-        charisma++;
+      case StatusType.Carisma:
+        charisma--;
         break;
     }
   }
 
   void increaseAttribute(StatusType statusType) {
     switch (statusType) {
-      case StatusType.strength:
+      case StatusType.Forca:
         strength++;
         break;
-      case StatusType.dexterity:
+      case StatusType.Destreza:
         dexterity++;
         break;
-      case StatusType.constitution:
+      case StatusType.Constituicao:
         constitution++;
         break;
-      case StatusType.intelligence:
+      case StatusType.Inteligencia:
         intelligence++;
         break;
-      case StatusType.wisdom:
+      case StatusType.Sabedoria:
         wisdom++;
         break;
-      case StatusType.charisma:
+      case StatusType.Carisma:
         charisma++;
         break;
     }

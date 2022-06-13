@@ -36,20 +36,20 @@ class Character {
   }
 }
 
-const Map<ExpertisesType, StatusType> relacaoExpertisesToStatus = {
-  ExpertisesType.acrobacia: StatusType.dexterity,
-  ExpertisesType.arcanismo: StatusType.intelligence,
-  ExpertisesType.atletismo: StatusType.strength,
-  ExpertisesType.atuacao: StatusType.charisma,
-  ExpertisesType.enganacao: StatusType.charisma,
-  ExpertisesType.furtividade: StatusType.dexterity,
-  ExpertisesType.intimidacao: StatusType.charisma,
-  ExpertisesType.intuicao: StatusType.wisdom,
-  ExpertisesType.investigacao: StatusType.charisma,
-  ExpertisesType.lidarComAnimais: StatusType.wisdom,
-  ExpertisesType.medicina: StatusType.wisdom,
-  ExpertisesType.persuacao: StatusType.charisma,
-  ExpertisesType.percepcao: StatusType.wisdom,
-  ExpertisesType.religiao: StatusType.intelligence,
-  ExpertisesType.instintoDeSobrevivencia: StatusType.wisdom,
+const Map<ExpertisesType, StatusType> mapExpertisesToStatus = {
+  ExpertisesType.Acrobacia: StatusType.Destreza,
+  ExpertisesType.Arcanismo: StatusType.Inteligencia,
+  ExpertisesType.Atletismo: StatusType.Forca,
+  ExpertisesType.Atuacao: StatusType.Carisma,
+  ExpertisesType.Enganacao: StatusType.Carisma,
+  ExpertisesType.Furtividade: StatusType.Destreza,
+  ExpertisesType.Intimidacao: StatusType.Carisma,
+  ExpertisesType.Intuicao: StatusType.Sabedoria,
+  ExpertisesType.Investigacao: StatusType.Carisma,
+  ExpertisesType.LidarComAnimais: StatusType.Sabedoria,
+  ExpertisesType.Medicina: StatusType.Sabedoria,
+  ExpertisesType.Persuacao: StatusType.Carisma,
+  ExpertisesType.Percepcao: StatusType.Sabedoria,
+  ExpertisesType.Religiao: StatusType.Inteligencia,
+  ExpertisesType.InstintoDeSobrevivencia: StatusType.Sabedoria,
 };

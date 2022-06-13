@@ -72,7 +72,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text(type.toString().substring("ExpertisesType".length)),
+        Text(type.toString().substring("ExpertisesType.".length)),
         TextButton(
           style: const ButtonStyle(),
           onPressed: () => setState(() => SampleCrud.decreaseExpertise(type)),
@@ -106,7 +106,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text(type.toString().substring("Statustype".toString().length)),
+        Text(type.toString().substring("Statustype.".toString().length)),
         TextButton(
           style: const ButtonStyle(),
           onPressed: () => setState(() => SampleCrud.decreaseAttribute(statusType: type)),
