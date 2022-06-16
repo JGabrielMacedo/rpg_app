@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:rpg_app/lib/models/character.dart';
 import 'package:rpg_app/lib/models/expertise.dart';
 import 'package:rpg_app/lib/models/expertises_types_enum.dart';
 import 'package:rpg_app/lib/models/status_type_enum.dart';
@@ -33,7 +32,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     _controller = TextEditingController();
-    _controller.text = SampleCrud.character.name;
+    _controller.text = SampleCrud.character.nome;
     super.initState();
   }
 
@@ -78,7 +77,7 @@ class _HomeScreenState extends State<HomeScreen> {
           onPressed: () => setState(() => SampleCrud.decreaseExpertise(type)),
           child: const Icon(Icons.remove),
         ),
-        Text("${SampleCrud.character.expertises?.statusInfluence[expertises[type]!]}"),
+        Text("${SampleCrud.character.pericias?.statusInfluence[expertises[type]!]}"),
         TextButton(
           style: const ButtonStyle(),
           onPressed: () => setState(() => SampleCrud.increaseExpertise(type)),
@@ -112,7 +111,7 @@ class _HomeScreenState extends State<HomeScreen> {
           onPressed: () => setState(() => SampleCrud.decreaseAttribute(statusType: type)),
           child: const Icon(Icons.remove),
         ),
-        Text("${SampleCrud.character.attributes?.getAtribbuteBy(type)}"),
+        Text("${SampleCrud.character.atributos?.getAtribbuteBy(type)}"),
         TextButton(
           style: const ButtonStyle(),
           onPressed: () => setState(() => SampleCrud.increaseAttribute(statusType: type)),
@@ -144,7 +143,7 @@ class _HomeScreenState extends State<HomeScreen> {
           onPressed: () => setState(() => SampleCrud.decreaseLife()),
           child: const Icon(Icons.remove),
         ),
-        Text("${SampleCrud.character.life}"),
+        Text("${SampleCrud.character.pontosDeVida}"),
         TextButton(
           style: const ButtonStyle(),
           onPressed: () => setState(() => SampleCrud.increaseLife()),

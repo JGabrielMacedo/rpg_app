@@ -5,7 +5,7 @@ enum ExpertisesType {
   Atuacao,
   Enganacao,
   Furtividade,
-  historia,
+  Historia,
   Intimidacao,
   Intuicao,
   Investigacao,

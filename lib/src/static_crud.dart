@@ -11,20 +11,20 @@ class SampleCrud {
   }
 
   static void increaseAttribute({required StatusType statusType}) =>
-      character.attributes?.increaseAttribute(statusType);
+      character.atributos?.increaseAttribute(statusType);
 
   static void decreaseAttribute({required StatusType statusType}) =>
-      character.attributes?.decreaseAttribute(statusType);
+      character.atributos?.decreaseAttribute(statusType);
 
-  static void changeCharacterName(String name) => character.name = name;
+  static void changeCharacterName(String name) => character.nome = name;
 
   static void increaseExpertise(ExpertisesType type) =>
-      character.expertises?.increaseExpertise(type);
+      character.pericias?.increaseExpertise(type);
 
   static void decreaseExpertise(ExpertisesType type) =>
-      character.expertises?.decreaseExpertise(type);
+      character.pericias?.decreaseExpertise(type);
 
-  static void increaseLife() => character.life++;
+  static void increaseLife() => character.pontosDeVida++;
 
-  static void decreaseLife() => character.life--;
+  static void decreaseLife() => character.pontosDeVida--;
 }
