@@ -1,4 +1,4 @@
-enum StatusType {
+enum AtributosType {
   Forca,
   Destreza,
   Constituicao,

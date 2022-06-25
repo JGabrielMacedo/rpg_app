@@ -1,84 +1,112 @@
-import 'package:rpg_app/lib/models/attributes.dart';
-import 'package:rpg_app/lib/models/equipments.dart';
-import 'package:rpg_app/lib/models/expertise.dart';
-import 'package:rpg_app/lib/models/expertises_types_enum.dart';
-import 'package:rpg_app/lib/models/skill.dart';
-import 'package:rpg_app/lib/models/status_type_enum.dart';
-import 'package:rpg_app/lib/models/talent.dart';
+import 'package:equatable/equatable.dart';
+import 'package:rpg_app/src/models/atributos_enum.dart';
+import 'package:rpg_app/src/models/expertises_types_enum.dart';
 
-class Character {
-  String nome;
-  int level;
-  String fraquezas;
-  int pontosDeVida;
-  Attributes? atributos;
-  Pericia? pericias;
-  List<Equipamento>? equipamentos;
-  List<Talento>? talentos;
-  List<Habilidade>? habilidades;
+class Personagem {
+  final int id;
+  final String nome;
+  final int level;
+  final String fraquezas;
+  final int pontosDeVida;
+  final String equipamentos;
+  final String talentos;
+  final String habilidades;
 
-  Character(
-    this.nome, {
+  Map<String, dynamic> toJson() {
+    return {
+      "id": id,
+      "nome": nome,
+      "level": level,
+      "fraquezas": fraquezas,
+      "pontosDeVida": pontosDeVida,
+      "equipamentos": equipamentos,
+      "talentos": talentos,
+      "habilidades": habilidades,
+    };
+  }
+
+  const Personagem({
+    this.nome = "",
+    this.id = 0,
     this.level = 1,
     this.fraquezas = "",
     this.pontosDeVida = 30,
-    this.atributos,
-    this.equipamentos,
-    this.talentos,
-    this.habilidades,
-    this.pericias,
-  }) {
-    pericias = Pericia();
-    equipamentos = [];
-    talentos = [];
-    habilidades = [];
-    atributos = Attributes();
-  }
+    this.equipamentos = "",
+    this.talentos = "",
+    this.habilidades = "",
+  });
 
-  Character.fromJson(Map<String, dynamic> json)
-      : nome = json["nome"],
-        level = int.parse(json["level"]),
+  Personagem.fromJson(Map<String, dynamic> json)
+      : id = json["id"],
+        nome = json["nome"],
+        level = json["level"],
         fraquezas = json["fraquezas"],
-        pontosDeVida = int.parse(json["pontosDeVida"]),
-        atributos = Attributes.fromJson(json["atributos"]),
-        pericias = Pericia.fromJson(json["pericias"]),
-        equipamentos = [],
-        talentos = [],
-        habilidades = [] {
-    if (json["equipamentos"] != null) {
-      for (Map<String, dynamic> equipamento in json["equipamentos"]) {
-        equipamentos?.add(Equipamento.fromJson(equipamento));
-      }
-    }
+        pontosDeVida = json["pontosDeVida"],
+        equipamentos = json["equipamentos"],
+        talentos = json["talentos"],
+        habilidades = json["habilidades"];
 
-    if (json["talentos"] != null) {
-      for (Map<String, dynamic> talento in json["talentos"]) {
-        talentos?.add(Talento.fromJson(talento));
-      }
-    }
-
-    if (json["habilidades"] != null) {
-      for (Map<String, dynamic> habilidade in json["habilidades"]) {
-        habilidades?.add(Habilidade.fromJson(habilidade));
-      }
-    }
+  Personagem copyWith({
+    int? id,
+    String? nome,
+    int? level,
+    String? fraquezas,
+    int? pontosDeVida,
+    String? equipamentos,
+    String? talentos,
+    String? habilidades,
+  }) {
+    return Personagem(
+      id: id ?? this.id,
+      nome: nome ?? this.nome,
+      level: level ?? this.level,
+      fraquezas: fraquezas ?? this.fraquezas,
+      pontosDeVida: pontosDeVida ?? this.pontosDeVida,
+      equipamentos: equipamentos ?? this.equipamentos,
+      talentos: talentos ?? this.talentos,
+      habilidades: habilidades ?? this.habilidades,
+    );
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is Personagem &&
+          runtimeType == other.runtimeType &&
+          id == other.id &&
+          nome == other.nome &&
+          level == other.level &&
+          fraquezas == other.fraquezas &&
+          pontosDeVida == other.pontosDeVida &&
+          equipamentos == other.equipamentos &&
+          talentos == other.talentos &&
+          habilidades == other.habilidades;
+
+  @override
+  int get hashCode =>
+      id.hashCode ^
+      nome.hashCode ^
+      level.hashCode ^
+      fraquezas.hashCode ^
+      pontosDeVida.hashCode ^
+      equipamentos.hashCode ^
+      talentos.hashCode ^
+      habilidades.hashCode;
 }
 
-const Map<ExpertisesType, StatusType> mapExpertisesToStatus = {
-  ExpertisesType.Acrobacia: StatusType.Destreza,
-  ExpertisesType.Arcanismo: StatusType.Inteligencia,
-  ExpertisesType.Atletismo: StatusType.Forca,
-  ExpertisesType.Atuacao: StatusType.Carisma,
-  ExpertisesType.Enganacao: StatusType.Carisma,
-  ExpertisesType.Furtividade: StatusType.Destreza,
-  ExpertisesType.Intimidacao: StatusType.Carisma,
-  ExpertisesType.Intuicao: StatusType.Sabedoria,
-  ExpertisesType.Investigacao: StatusType.Carisma,
-  ExpertisesType.LidarComAnimais: StatusType.Sabedoria,
-  ExpertisesType.Medicina: StatusType.Sabedoria,
-  ExpertisesType.Persuacao: StatusType.Carisma,
-  ExpertisesType.Percepcao: StatusType.Sabedoria,
-  ExpertisesType.Religiao: StatusType.Inteligencia,
-  ExpertisesType.InstintoDeSobrevivencia: StatusType.Sabedoria,
+const Map<PericiasType, AtributosType> mapExpertisesToStatus = {
+  PericiasType.Acrobacia: AtributosType.Destreza,
+  PericiasType.Arcanismo: AtributosType.Inteligencia,
+  PericiasType.Atletismo: AtributosType.Forca,
+  PericiasType.Atuacao: AtributosType.Carisma,
+  PericiasType.Enganacao: AtributosType.Carisma,
+  PericiasType.Furtividade: AtributosType.Destreza,
+  PericiasType.Intimidacao: AtributosType.Carisma,
+  PericiasType.Intuicao: AtributosType.Sabedoria,
+  PericiasType.Investigacao: AtributosType.Carisma,
+  PericiasType.LidarComAnimais: AtributosType.Sabedoria,
+  PericiasType.Medicina: AtributosType.Sabedoria,
+  PericiasType.Persuacao: AtributosType.Carisma,
+  PericiasType.Percepcao: AtributosType.Sabedoria,
+  PericiasType.InstintoDeSobrevivencia: AtributosType.Sabedoria,
 };

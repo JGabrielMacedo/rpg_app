@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:rpg_app/lib/view/home_screen.dart';
+import 'package:rpg_app/src/view/app.dart';
 
 void main() {
   runApp(const MyApp());

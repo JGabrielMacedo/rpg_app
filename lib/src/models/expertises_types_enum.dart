@@ -1,11 +1,10 @@
-enum ExpertisesType {
+enum PericiasType {
   Acrobacia,
   Arcanismo,
   Atletismo,
   Atuacao,
   Enganacao,
   Furtividade,
-  Historia,
   Intimidacao,
   Intuicao,
   Investigacao,
@@ -13,6 +12,5 @@ enum ExpertisesType {
   Medicina,
   Persuacao,
   Percepcao,
-  Religiao,
   InstintoDeSobrevivencia,
 }
