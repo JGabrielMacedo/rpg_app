@@ -5,6 +5,7 @@ import 'package:rpg_app/src/view/components/sample_curcular_button.dart';
 import 'package:rpg_app/src/view/dashboard_view/components/attributes_view.dart';
 import 'package:rpg_app/src/view/dashboard_view/components/dashboard_app_bar_view.dart';
 import 'package:rpg_app/src/view/dashboard_view/components/pericia_view.dart';
+import 'package:rpg_app/src/view/dashboard_view/components/theme_color_bottom_sheet.dart';
 
 class DashboardView extends StatelessWidget {
   const DashboardView({Key? key}) : super(key: key);
@@ -39,18 +40,25 @@ class DashboardView extends StatelessWidget {
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: SampleCircularButton(
+                            borderColor: Colors.grey,
+                            backgroundColor: Theme.of(context).cardColor,
                             onPressed: () => BlocProvider.of<DashboardRule>(context).updatePlayer(),
-                            child: const Text("Salvar informações"),
+                            child: Text(
+                              "Salvar informações",
+                              style: Theme.of(context).textTheme.bodyText1,
+                            ),
                           ),
                         ),
                       ),
                       const SliverToBoxAdapter(child: Divider()),
                       SliverToBoxAdapter(
-                          child: Center(
-                              child: Text(
-                        "Atributos",
-                        style: Theme.of(context).textTheme.bodyText1,
-                      ))),
+                        child: Center(
+                          child: Text(
+                            "Atributos",
+                            style: Theme.of(context).textTheme.bodyText1,
+                          ),
+                        ),
+                      ),
                       const AttributesView(),
                       const SliverToBoxAdapter(child: Divider()),
                       const SliverToBoxAdapter(child: Center(child: Text("Pericias"))),

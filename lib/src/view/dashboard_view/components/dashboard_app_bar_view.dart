@@ -1,8 +1,10 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rpg_app/src/rule/cubit/dashboard_cubit/dashboard.dart';
 import 'package:rpg_app/src/view/components/my_text_field.dart';
 import 'package:rpg_app/src/view/components/sample_curcular_button.dart';
+import 'package:rpg_app/src/view/dashboard_view/components/theme_color_bottom_sheet.dart';
 
 class DashboardAppBar extends StatelessWidget {
   const DashboardAppBar({Key? key}) : super(key: key);
@@ -20,19 +22,25 @@ class DashboardAppBar extends StatelessWidget {
             duration: const Duration(milliseconds: 400),
             child: _buildLeadingIconButton(context, state),
           ),
-          actions: [
-            SampleCircularButton(
-              onPressed: () => BlocProvider.of<DashboardRule>(context).updatePlayer(),
-              child: const Icon(Icons.save),
-            ),
-          ],
           centerTitle: true,
+          actions: [
+            IconButton(
+              onPressed: () => showModalBottomSheet(
+                  context: context, builder: (context) => const ChangeThemeColorBottomSheet()),
+              icon: Icon(
+                Icons.color_lens_outlined,
+                color: Theme.of(context).textTheme.bodyText1?.color,
+              ),
+            )
+          ],
         );
       },
     );
   }
 
-  Widget _buildTitleAppBar(context, state) {
+  Widget _buildTitleAppBar(BuildContext context, DashboardState state) {
+    var playerName = state.player.personagem.nome;
+
     if (state is ChangeNameDashboardSate) {
       return MyTextView(
         labelText: "Novo nome: ",
@@ -46,19 +54,28 @@ class DashboardAppBar extends StatelessWidget {
         },
       );
     }
-    return Text(state.player.personagem?.nome ?? "");
+    return Text(
+      playerName.isNotEmpty ? playerName : "Sem nome",
+      style: Theme.of(context).textTheme.titleLarge,
+    );
   }
 
   Widget _buildLeadingIconButton(context, state) {
     if (state is ChangeNameDashboardSate) {
       return IconButton(
         onPressed: () => BlocProvider.of<DashboardRule>(context).loadInformationWithoutSave(),
-        icon: const Icon(Icons.cancel_outlined),
+        icon: Icon(
+          Icons.cancel_outlined,
+          color: Theme.of(context).textTheme.bodyText1?.color,
+        ),
       );
     }
     return IconButton(
       onPressed: () => BlocProvider.of<DashboardRule>(context).changePersonName(),
-      icon: const Icon(Icons.edit),
+      icon: Icon(
+        Icons.edit,
+        color: Theme.of(context).textTheme.bodyText1?.color,
+      ),
     );
   }
 }

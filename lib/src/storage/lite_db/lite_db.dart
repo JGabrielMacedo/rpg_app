@@ -149,7 +149,7 @@ class ApplicationDataBase {
     return player;
   }
 
-  Future<void> updtaeAllTables(Player player) async {
+  Future<void> updateAllTables(Player player) async {
     updateAtributos(player.atributos );
     updatePericia(player.pericia );
     updatePersonagem(player.personagem ) ;

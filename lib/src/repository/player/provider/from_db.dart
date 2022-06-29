@@ -1,7 +1,7 @@
-import 'package:rpg_app/src/lite_db/lite_db.dart';
 import 'package:rpg_app/src/map_error/error.dart';
 import 'package:rpg_app/src/models/player.dart';
 import 'package:rpg_app/src/repository/player/interface/player_provider.dart';
+import 'package:rpg_app/src/storage/lite_db/lite_db.dart';
 import 'package:sqflite/sqflite.dart';
 
 class PlayerFromDB implements PlayerProvider {
@@ -15,7 +15,7 @@ class PlayerFromDB implements PlayerProvider {
       dataBase.salvarDefaultConfigDB(player);
       return true;
     } on DatabaseException catch (err) {
-      return Future.error(ProjectError(ProjectError.DB_GENERIC_ERROR, error: err));
+      return Future.error(ProjectError(ProjectError.FAILED_TO_GET_CONTENT, error: err));
     } catch (err) {
       return Future.error(ProjectError(ProjectError.GENERIC_ERROR, error: err));
     }
@@ -26,7 +26,7 @@ class PlayerFromDB implements PlayerProvider {
     try {
       return await dataBase.getPlayer();
     } on DatabaseException catch (err) {
-      return Future.error(ProjectError(ProjectError.DB_GENERIC_ERROR, error: err));
+      return Future.error(ProjectError(ProjectError.FAILED_TO_GET_CONTENT, error: err));
     } catch (err, stack) {
       print(stack);
       return Future.error(ProjectError(ProjectError.GENERIC_ERROR, error: err));
@@ -36,10 +36,10 @@ class PlayerFromDB implements PlayerProvider {
   @override
   Future<bool> updatePlayer(Player player) async {
     try {
-      await dataBase.updtaeAllTables(player);
+      await dataBase.updateAllTables(player);
       return true;
     } on DatabaseException catch (err) {
-      return Future.error(ProjectError(ProjectError.DB_GENERIC_ERROR, error: err));
+      return Future.error(ProjectError(ProjectError.FAILED_TO_GET_CONTENT, error: err));
     } catch (err) {
       return Future.error(ProjectError(ProjectError.GENERIC_ERROR, error: err));
     }

@@ -15,52 +15,54 @@ class PericiasView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return BlocBuilder<DashboardRule, DashboardState>(builder: (context, state) {
+      final Pericia pericias = state.player.pericia.copyWith();
+      final Map<String, dynamic> periciaJson = pericias.toJson();
 
+      return StatusGrid(
+        buildChildren: (context, index) {
+          final PericiasType periciaType = mapIndexToPericiasType[index];
+          final String? periciaNome = mapPericiasTypeToString[periciaType];
+          final int periciaValue = periciaJson[periciaNome];
 
-
-    return BlocBuilder<DashboardRule, DashboardState>(
-      builder: (context, state) {
-        final Pericia pericias = state.player.pericia.copyWith();
-        final Map<String, dynamic> periciaJson = pericias.toJson();
-
-        return StatusGrid(
-          buildChildren: (context, index) {
-            final PericiasType periciaType = mapIndexToPericiasType[index];
-            final String? periciaNome = mapPericiasTypeToString[periciaType];
-            final int periciaValue = periciaJson[periciaNome];
-
-            return Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Container(decoration: BoxDecoration(border: Border.all(color: Colors.black)),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    const Divider(),
-                    Text(periciaNome?.toUpperCase() ?? ""),
-                    Text(periciaValue.toString()),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        SampleCircularButton(
-                          onPressed: () => BlocProvider.of<DashboardRule>(context)
-                              .decreasePericia(periciaIndex: index),
-                          child: const Icon(Icons.remove),
+          return Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Container(
+              decoration: BoxDecoration(border: Border.all(color: Colors.black)),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Divider(),
+                  Text(periciaNome?.toUpperCase() ?? ""),
+                  Text(periciaValue.toString()),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      SampleCircularButton(
+                        onPressed: () => BlocProvider.of<DashboardRule>(context)
+                            .decreasePericia(periciaIndex: index),
+                        child: Icon(
+                          Icons.remove,
+                          color: Theme.of(context).textTheme.bodyText1?.color,
                         ),
-                        SampleCircularButton(
-                          onPressed: () => BlocProvider.of<DashboardRule>(context)
-                              .increasePericia(periciaIndex: index),
-                          child: const Icon(Icons.add),
+                      ),
+                      SampleCircularButton(
+                        onPressed: () => BlocProvider.of<DashboardRule>(context)
+                            .increasePericia(periciaIndex: index),
+                        child: Icon(
+                          Icons.add,
+                          color: Theme.of(context).textTheme.bodyText1?.color,
                         ),
-                      ],
-                    )
-                  ],
-                ),
+                      ),
+                    ],
+                  )
+                ],
               ),
-            );
-          },
-          childCount: _quantidadeDePericia,
-        );
-      }
-    );
+            ),
+          );
+        },
+        childCount: _quantidadeDePericia,
+      );
+    });
   }
 }

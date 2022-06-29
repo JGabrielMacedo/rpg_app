@@ -5,19 +5,32 @@ class SampleCircularButton extends StatelessWidget {
     Key? key,
     required this.onPressed,
     required this.child,
+    this.primaryColor,
+    this.backgroundColor,
+    this.borderColor,
   }) : super(key: key);
 
   final Function onPressed;
   final Widget child;
+  final Color? primaryColor;
+  final Color? backgroundColor;
+  final Color? borderColor;
 
   @override
   Widget build(BuildContext context) {
-    return TextButton(
-      style: TextButton.styleFrom(
-        shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(16))),
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(360),
+        color: backgroundColor,
+        border: borderColor != null ? Border.all(color: borderColor!) : null,
       ),
-      onPressed: () => onPressed.call(),
-      child: child,
+      child: TextButton(
+        style: TextButton.styleFrom(
+          shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(16))),
+        ),
+        onPressed: () => onPressed.call(),
+        child: child,
+      ),
     );
   }
 }

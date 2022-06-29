@@ -40,12 +40,18 @@ class AttributesView extends StatelessWidget {
                         SampleCircularButton(
                           onPressed: () => BlocProvider.of<DashboardRule>(context)
                               .decreaseAtributo(atributoIndex: index),
-                          child: const Icon(Icons.remove),
+                          child: Icon(
+                            Icons.remove,
+                            color: Theme.of(context).textTheme.bodyText1?.color,
+                          ),
                         ),
                         SampleCircularButton(
                           onPressed: () => BlocProvider.of<DashboardRule>(context)
                               .increaseAtributo(atributoIndex: index),
-                          child: const Icon(Icons.add),
+                          child: Icon(
+                            Icons.add,
+                            color: Theme.of(context).textTheme.bodyText1?.color,
+                          ),
                         ),
                       ],
                     ),

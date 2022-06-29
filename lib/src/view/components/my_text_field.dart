@@ -19,9 +19,11 @@ class MyTextView extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: TextField(
+        style: Theme.of(context).textTheme.bodyLarge?.copyWith(color: Colors.white),
         onSubmitted: onFinish,
         controller: controller,
         decoration: InputDecoration(
+          labelStyle: Theme.of(context).textTheme.bodyLarge?.copyWith(color: Colors.white),
           border: const UnderlineInputBorder(),
           labelText: labelText ?? "",
         ),
