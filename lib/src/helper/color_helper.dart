@@ -5,13 +5,7 @@ extension ColorHelper on Color {
     final hslColor = HSLColor.fromColor(this);
     final lightness = hslColor.lightness;
 
-    /// if [500] is the default color, there are at LEAST five
-    /// but not quite.
     const lowDivisor = 6;
-
-    /// if [500] is the default color, there are at LEAST four
-    /// steps above [500]. A divisor of 4 would mean [900] is
-    /// a lightness of 0.0 or color of #000000
     const highDivisor = 5;
 
     final lowStep = (1.0 - lightness) / lowDivisor;
@@ -29,5 +23,19 @@ extension ColorHelper on Color {
       800: (hslColor.withLightness(lightness - (highStep * 3))).toColor(),
       900: (hslColor.withLightness(lightness - (highStep * 4))).toColor(),
     };
+  }
+
+  static Color? defineForegroundColorWithContrastOf(Color? color) {
+    if (color == null) return null;
+
+    final yiq = _getYiqFromColor(color);
+    final bool canUseWhite = yiq <= 128;
+
+    if (canUseWhite) return Colors.white;
+    return Colors.black;
+  }
+
+  static double _getYiqFromColor(Color color) {
+    return ((color.red * 299) + (color.green * 587) + (color.blue * 114)) / 1000;
   }
 }

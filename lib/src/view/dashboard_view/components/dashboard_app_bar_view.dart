@@ -1,6 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:rpg_app/src/helper/color_helper.dart';
 import 'package:rpg_app/src/rule/cubit/dashboard_cubit/dashboard.dart';
 import 'package:rpg_app/src/view/components/my_text_field.dart';
 import 'package:rpg_app/src/view/components/sample_curcular_button.dart';
@@ -29,7 +30,9 @@ class DashboardAppBar extends StatelessWidget {
                   context: context, builder: (context) => const ChangeThemeColorBottomSheet()),
               icon: Icon(
                 Icons.color_lens_outlined,
-                color: Theme.of(context).textTheme.bodyText1?.color,
+                color: ColorHelper.defineForegroundColorWithContrastOf(
+                  Theme.of(context).primaryColor,
+                ),
               ),
             )
           ],
@@ -56,7 +59,11 @@ class DashboardAppBar extends StatelessWidget {
     }
     return Text(
       playerName.isNotEmpty ? playerName : "Sem nome",
-      style: Theme.of(context).textTheme.titleLarge,
+      style: Theme.of(context).textTheme.titleLarge?.copyWith(
+            color: ColorHelper.defineForegroundColorWithContrastOf(
+              Theme.of(context).primaryColor,
+            ),
+          ),
     );
   }
 
@@ -66,7 +73,9 @@ class DashboardAppBar extends StatelessWidget {
         onPressed: () => BlocProvider.of<DashboardRule>(context).loadInformationWithoutSave(),
         icon: Icon(
           Icons.cancel_outlined,
-          color: Theme.of(context).textTheme.bodyText1?.color,
+          color: ColorHelper.defineForegroundColorWithContrastOf(
+            Theme.of(context).primaryColor,
+          ),
         ),
       );
     }
@@ -74,7 +83,9 @@ class DashboardAppBar extends StatelessWidget {
       onPressed: () => BlocProvider.of<DashboardRule>(context).changePersonName(),
       icon: Icon(
         Icons.edit,
-        color: Theme.of(context).textTheme.bodyText1?.color,
+        color: ColorHelper.defineForegroundColorWithContrastOf(
+          Theme.of(context).primaryColor,
+        ),
       ),
     );
   }

@@ -8,6 +8,15 @@ import 'package:rpg_app/src/view/components/status_grid.dart';
 
 final int _quantidadeDeAtributos = mapIntToAtributoType.length;
 
+const Map<AtributosType, String> attributesTitle = {
+  AtributosType.Forca: "Força",
+  AtributosType.Destreza: "Destreza",
+  AtributosType.Constituicao: "Constituição",
+  AtributosType.Inteligencia: "Inteligência",
+  AtributosType.Sabedoria: "Sabedoria",
+  AtributosType.Carisma: "Carisma",
+};
+
 class AttributesView extends StatelessWidget {
   const AttributesView({Key? key}) : super(key: key);
 
@@ -22,41 +31,35 @@ class AttributesView extends StatelessWidget {
         return StatusGrid(
           buildChildren: (context, index) {
             final AtributosType attributeType = mapIntToAtributoType[index];
-            final String? attributeName = mapAtributoTypeToString[attributeType];
+            final String attributeName = attributesTitle[attributeType] ?? "";
+            final int atributosNome = atributosJson[mapAtributoTypeToString[attributeType]];
 
-            return Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Container(
-                decoration: BoxDecoration(border: Border.all(color: Colors.black)),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    const Divider(),
-                    Text(attributeName?.toUpperCase() ?? ""),
-                    Text("${atributosJson[attributeName?.toLowerCase()]}"),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        SampleCircularButton(
-                          onPressed: () => BlocProvider.of<DashboardRule>(context)
-                              .decreaseAtributo(atributoIndex: index),
-                          child: Icon(
-                            Icons.remove,
-                            color: Theme.of(context).textTheme.bodyText1?.color,
-                          ),
-                        ),
-                        SampleCircularButton(
-                          onPressed: () => BlocProvider.of<DashboardRule>(context)
-                              .increaseAtributo(atributoIndex: index),
-                          child: Icon(
-                            Icons.add,
-                            color: Theme.of(context).textTheme.bodyText1?.color,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
+            return Container(
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.black),
+                borderRadius: BorderRadius.circular(24),
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Text(attributeName),
+                  Text(atributosNome.toString()),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      SampleCircularButton(
+                        onPressed: () => BlocProvider.of<DashboardRule>(context)
+                            .decreaseAtributo(atributoIndex: index),
+                        child: const Icon(Icons.remove),
+                      ),
+                      SampleCircularButton(
+                        onPressed: () => BlocProvider.of<DashboardRule>(context)
+                            .increaseAtributo(atributoIndex: index),
+                        child: const Icon(Icons.add),
+                      ),
+                    ],
+                  ),
+                ],
               ),
             );
           },

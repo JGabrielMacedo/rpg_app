@@ -10,6 +10,24 @@ import 'package:rpg_app/src/view/components/status_grid.dart';
 
 final int _quantidadeDePericia = mapIndexToPericiasType.length;
 
+const Map<PericiasType, String> _periciasTitle = {
+  PericiasType.Acrobacia: "Acrobacia",
+  PericiasType.Arcanismo: "Arcanismo",
+  PericiasType.Atletismo: "Atletismo",
+  PericiasType.Atuacao: "Atuação",
+  PericiasType.Enganacao: "Enganação",
+  PericiasType.Furtividade: "Furtividade",
+  PericiasType.Intimidacao: "Intimidação",
+  PericiasType.Intuicao: "Intuição",
+  PericiasType.Investigacao: "Investigação",
+  PericiasType.LidarComAnimais: "Lidar com animais",
+  PericiasType.Medicina: "Medicina",
+  PericiasType.Persuacao: "Persuasão",
+  PericiasType.Percepcao: "Percepção",
+  PericiasType.InstintoDeSobrevivencia: "Instinto de sobrevivencia",
+};
+
+
 class PericiasView extends StatelessWidget {
   const PericiasView({Key? key}) : super(key: key);
 
@@ -22,42 +40,35 @@ class PericiasView extends StatelessWidget {
       return StatusGrid(
         buildChildren: (context, index) {
           final PericiasType periciaType = mapIndexToPericiasType[index];
-          final String? periciaNome = mapPericiasTypeToString[periciaType];
-          final int periciaValue = periciaJson[periciaNome];
+          final String? periciaNome = _periciasTitle[periciaType];
+          final int periciaValue = periciaJson[mapPericiasTypeToString[periciaType]];
 
-          return Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Container(
-              decoration: BoxDecoration(border: Border.all(color: Colors.black)),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Divider(),
-                  Text(periciaNome?.toUpperCase() ?? ""),
-                  Text(periciaValue.toString()),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      SampleCircularButton(
-                        onPressed: () => BlocProvider.of<DashboardRule>(context)
-                            .decreasePericia(periciaIndex: index),
-                        child: Icon(
-                          Icons.remove,
-                          color: Theme.of(context).textTheme.bodyText1?.color,
-                        ),
-                      ),
-                      SampleCircularButton(
-                        onPressed: () => BlocProvider.of<DashboardRule>(context)
-                            .increasePericia(periciaIndex: index),
-                        child: Icon(
-                          Icons.add,
-                          color: Theme.of(context).textTheme.bodyText1?.color,
-                        ),
-                      ),
-                    ],
-                  )
-                ],
-              ),
+          return Container(
+            decoration: BoxDecoration(
+              border: Border.all(color: Colors.black),
+              borderRadius: BorderRadius.circular(24),
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Text(periciaNome ?? "", textAlign: TextAlign.center,),
+                Text(periciaValue.toString()),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    SampleCircularButton(
+                      onPressed: () => BlocProvider.of<DashboardRule>(context)
+                          .decreasePericia(periciaIndex: index),
+                      child: const Icon(Icons.remove),
+                    ),
+                    SampleCircularButton(
+                      onPressed: () => BlocProvider.of<DashboardRule>(context)
+                          .increasePericia(periciaIndex: index),
+                      child: const Icon(Icons.add),
+                    ),
+                  ],
+                )
+              ],
             ),
           );
         },

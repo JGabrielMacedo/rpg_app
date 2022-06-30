@@ -18,15 +18,14 @@ class SampleCircularButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(360),
-        color: backgroundColor,
-        border: borderColor != null ? Border.all(color: borderColor!) : null,
-      ),
+    return SizedBox(
+      height: 32,
+      width: 32,
       child: TextButton(
         style: TextButton.styleFrom(
-          shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(16))),
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(16)),
+          ),
         ),
         onPressed: () => onPressed.call(),
         child: child,
