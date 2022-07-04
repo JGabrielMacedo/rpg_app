@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rpg_app/src/rule/cubit/dashboard_cubit/dashboard.dart';
 import 'package:rpg_app/src/view/components/sample_curcular_button.dart';
 import 'package:rpg_app/src/view/dashboard_view/components/attributes_view.dart';
+import 'package:rpg_app/src/view/dashboard_view/components/character_profile.dart';
 import 'package:rpg_app/src/view/dashboard_view/components/dashboard_app_bar_view.dart';
 import 'package:rpg_app/src/view/dashboard_view/components/pericia_view.dart';
 
@@ -25,6 +26,7 @@ class DashboardView extends StatelessWidget {
                     slivers: [
                       const DashboardAppBar(),
                       _buildSaveInformationButton(context),
+                      SliverToBoxAdapter(child: CharacterProfile()),
                       _buildAttributesTitle(context),
                       const AttributesView(),
                       _buildExpertiseTitle(context),
