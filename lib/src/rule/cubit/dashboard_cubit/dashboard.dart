@@ -25,4 +25,8 @@ abstract class DashboardRule extends Cubit<DashboardState> {
   Future<void> increasePericia({required int periciaIndex});
 
   Future<void> decreasePericia({required int periciaIndex});
+
+  Future<void> changeHealthPointTo(double value);
+
+  Future<void> changePowerPointTo(double value);
 }

@@ -7,11 +7,27 @@ class Personagem {
   final String nome;
   final int level;
   final String fraquezas;
-  final int pontosDeVida;
-  final int pontosDePoder;
+  final int pontosTotaisDeVida;
+  final int pontosDeVidaAtuais;
+  final int pontosTotaisDePoder;
+  final int pontosDePoderAtuais;
   final String equipamentos;
   final String talentos;
   final String habilidades;
+
+  const Personagem({
+    this.nome = "",
+    this.id = 0,
+    this.level = 1,
+    this.fraquezas = "",
+    this.pontosTotaisDeVida = 30,
+    this.pontosDeVidaAtuais = 30,
+    this.pontosTotaisDePoder = 30,
+    this.pontosDePoderAtuais = 30,
+    this.equipamentos = "",
+    this.talentos = "",
+    this.habilidades = "",
+  });
 
   Map<String, dynamic> toJson() {
     return {
@@ -19,33 +35,25 @@ class Personagem {
       "nome": nome,
       "level": level,
       "fraquezas": fraquezas,
-      "pontosDeVida": pontosDeVida,
-      "pontosDePoder": pontosDePoder,
+      "pontosTotaisDeVida": pontosTotaisDeVida,
+      "pontosDeVidaAtuais": pontosDeVidaAtuais,
+      "pontosTotaisDePoder": pontosTotaisDePoder,
+      "pontosDePoderAtuais": pontosDePoderAtuais,
       "equipamentos": equipamentos,
       "talentos": talentos,
       "habilidades": habilidades,
     };
   }
 
-  const Personagem({
-    this.nome = "",
-    this.id = 0,
-    this.level = 1,
-    this.fraquezas = "",
-    this.pontosDeVida = 30,
-    this.pontosDePoder = 1,
-    this.equipamentos = "",
-    this.talentos = "",
-    this.habilidades = "",
-  });
-
   Personagem.fromJson(Map<String, dynamic> json)
       : id = json["id"],
         nome = json["nome"],
         level = json["level"],
         fraquezas = json["fraquezas"],
-        pontosDeVida = json["pontosDeVida"],
-        pontosDePoder = json["pontosDePoder"],
+        pontosTotaisDeVida = json["pontosTotaisDeVida"],
+        pontosDeVidaAtuais = json["pontosDeVidaAtuais"],
+        pontosTotaisDePoder = json["pontosTotaisDePoder"],
+        pontosDePoderAtuais = json["pontosDePoderAtuais"],
         equipamentos = json["equipamentos"],
         talentos = json["talentos"],
         habilidades = json["habilidades"];
@@ -55,8 +63,10 @@ class Personagem {
     String? nome,
     int? level,
     String? fraquezas,
-    int? pontosDeVida,
-    int? pontosDePoder,
+    int? pontosTotaisDeVida,
+    int? pontosDeVidaAtuais,
+    int? pontosTotaisDePoder,
+    int? pontosDePoderAtuais,
     String? equipamentos,
     String? talentos,
     String? habilidades,
@@ -66,8 +76,10 @@ class Personagem {
       nome: nome ?? this.nome,
       level: level ?? this.level,
       fraquezas: fraquezas ?? this.fraquezas,
-      pontosDeVida: pontosDeVida ?? this.pontosDeVida,
-      pontosDePoder: pontosDePoder ?? this.pontosDePoder,
+      pontosTotaisDeVida: pontosTotaisDeVida ?? this.pontosTotaisDeVida,
+      pontosDeVidaAtuais: pontosDeVidaAtuais ?? this.pontosDeVidaAtuais,
+      pontosTotaisDePoder: pontosTotaisDePoder ?? this.pontosTotaisDePoder,
+      pontosDePoderAtuais: pontosDePoderAtuais ?? this.pontosDePoderAtuais,
       equipamentos: equipamentos ?? this.equipamentos,
       talentos: talentos ?? this.talentos,
       habilidades: habilidades ?? this.habilidades,
@@ -83,8 +95,10 @@ class Personagem {
           nome == other.nome &&
           level == other.level &&
           fraquezas == other.fraquezas &&
-          pontosDeVida == other.pontosDeVida &&
-          pontosDePoder == other.pontosDePoder &&
+          pontosTotaisDeVida == other.pontosTotaisDeVida &&
+          pontosDeVidaAtuais == other.pontosDeVidaAtuais &&
+          pontosTotaisDePoder == other.pontosTotaisDePoder &&
+          pontosDePoderAtuais == other.pontosDePoderAtuais &&
           equipamentos == other.equipamentos &&
           talentos == other.talentos &&
           habilidades == other.habilidades;
@@ -95,8 +109,10 @@ class Personagem {
       nome.hashCode ^
       level.hashCode ^
       fraquezas.hashCode ^
-      pontosDeVida.hashCode ^
-      pontosDePoder.hashCode ^
+      pontosTotaisDeVida.hashCode ^
+      pontosDeVidaAtuais.hashCode ^
+      pontosTotaisDePoder.hashCode ^
+      pontosDePoderAtuais.hashCode ^
       equipamentos.hashCode ^
       talentos.hashCode ^
       habilidades.hashCode;

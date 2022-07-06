@@ -14,8 +14,10 @@ const id_personagem = "id";
 const nome_personagem = "nome";
 const level_personagem = "level";
 const fraquezas_personagem = "fraquezas";
-const pontosdDeVida_personagem = "pontosDeVida";
-const pontosDePoder_personagem = "pontosDePoder";
+const pontosTotaisDeVida_personagem = "pontosTotaisDeVida";
+const pontosDeVidaAtuais_personagem = "pontosDeVidaAtuais";
+const pontosTotaisDePoder_personagem = "pontosTotaisDePoder";
+const pontosDePoderAtuais_personagem = "pontosDePoderAtuais";
 const equipamentos_personagem = "equipamentos";
 const talentos_personagem = "talentos";
 const habilidades_personagem = "habilidades";
@@ -54,8 +56,10 @@ const CRIA_CHARACTER_TABLE = "CREATE TABLE IF NOT EXISTS $PERSONAGEM_TABLE_NAME 
     "$nome_personagem TEXT, "
     "$level_personagem INTEGER DEFAULT 1, "
     "$fraquezas_personagem Text, "
-    "$pontosdDeVida_personagem INTEGER DEFAULT 20, "
-    "$pontosDePoder_personagem INTEGER DEFAULT 1, "
+    "$pontosTotaisDeVida_personagem INTEGER DEFAULT 30, "
+    "$pontosDeVidaAtuais_personagem INTEGER DEFAULT 30, "
+    "$pontosTotaisDePoder_personagem INTEGER DEFAULT 30, "
+    "$pontosDePoderAtuais_personagem INTEGER DEFAULT 30, "
     "$equipamentos_personagem TEXT, "
     "$talentos_personagem TEXT, "
     "$habilidades_personagem TEXT, "
@@ -107,7 +111,7 @@ class ApplicationDataBase {
         await dataBase.insert(ATRIBUTOS_TABLE_NAME, const Atributos().toJson());
       },
       version: 1,
-      // onDowngrade: onDatabaseDowngradeDelete,
+      onDowngrade: onDatabaseDowngradeDelete,
     );
   }
 

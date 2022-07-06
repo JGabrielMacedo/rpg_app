@@ -1,6 +1,9 @@
+import 'dart:developer';
+
 import 'package:rpg_app/src/map_error/error.dart';
 import 'package:rpg_app/src/models/atributos.dart';
 import 'package:rpg_app/src/models/atributos_enum.dart';
+import 'package:rpg_app/src/models/character.dart';
 import 'package:rpg_app/src/models/expertises_types_enum.dart';
 import 'package:rpg_app/src/models/pericia.dart';
 import 'package:rpg_app/src/models/player.dart';
@@ -23,7 +26,7 @@ class DashboardRuleImpl extends DashboardRule {
       if (playerFounded == null) return createNewPlayer(player);
       return emit(LoadedDashboardState(player: playerFounded));
     } catch (err) {
-      print((err as ProjectError).error);
+      log((err as ProjectError).error);
 
       return emit(ErrorDashboardState(player: player));
     }
@@ -219,5 +222,17 @@ class DashboardRuleImpl extends DashboardRule {
         break;
     }
     emit(LoadedDashboardState(player: state.player.copyWith(pericia: newPericia)));
+  }
+
+  @override
+  Future<void> changeHealthPointTo(double value) async {
+    final Personagem newPerson = state.player.personagem.copyWith(pontosDeVidaAtuais: value ~/ 1);
+    emit(LoadedDashboardState(player: state.player.copyWith(personagem: newPerson)));
+  }
+
+  @override
+  Future<void> changePowerPointTo(double value) async {
+    final Personagem newPerson = state.player.personagem.copyWith(pontosDePoderAtuais: value ~/ 1);
+    emit(LoadedDashboardState(player: state.player.copyWith(personagem: newPerson)));
   }
 }
