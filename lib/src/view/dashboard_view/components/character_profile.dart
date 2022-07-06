@@ -5,29 +5,40 @@ class CharacterProfile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Container(
-        decoration: const BoxDecoration(shape: BoxShape.circle),
-        child: Row(
-          children: [
-            SizedBox(
-                height: 100,
-                child: Column(
-                    children: [Text("HP"), Text("Mana")],
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween)),
-            SizedBox(
-                height: 100,
-                child: Column(
-                    children: [PointLine(), PointLine()],
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween)),
-            SizedBox(
-                height: 100,
-                child: Column(
-                    children: [Text("20"), Text("20")],
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween)),
-          ],
-        ),
+    return SliverToBoxAdapter(
+      child: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Container(
+              padding: const EdgeInsets.all(8.0),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(8),
+                border: Border.all(color: Colors.black),
+              ),
+              child: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Text("HP", style: Theme.of(context).textTheme.bodyText1),
+                      const PointLine(),
+                      Text("20", style: Theme.of(context).textTheme.bodyText1),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Text("SP", style: Theme.of(context).textTheme.bodyText1),
+                      const PointLine(),
+                      Text("20", style: Theme.of(context).textTheme.bodyText1),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -49,9 +60,9 @@ class _PointLineState extends State<PointLine> {
 
   @override
   Widget build(BuildContext context) {
-    final Size screenSize = MediaQuery.of(context).size;
+    final double screenWidth = MediaQuery.of(context).size.width;
     return SizedBox(
-      width: screenSize.width / 10 * 6,
+      width: screenWidth / 10 * 6,
       child: Slider(
         value: _currentSliderValue,
         max: totalPoints * 1.0,

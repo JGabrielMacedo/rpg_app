@@ -26,11 +26,12 @@ class DashboardView extends StatelessWidget {
                     slivers: [
                       const DashboardAppBar(),
                       _buildSaveInformationButton(context),
-                      SliverToBoxAdapter(child: CharacterProfile()),
+                      _buildStatusTitle(context),
+                      const CharacterProfile(),
                       _buildAttributesTitle(context),
                       const AttributesView(),
                       _buildExpertiseTitle(context),
-                      const PericiasView()
+                      const PericiasView(),
                     ],
                   )
                 : const Center(child: CircularProgressIndicator()),
@@ -76,16 +77,34 @@ class DashboardView extends StatelessWidget {
         ),
       );
 
+  SliverToBoxAdapter _buildStatusTitle(BuildContext context) => SliverToBoxAdapter(
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Center(
+            child: Text(
+              "Status",
+              style: Theme.of(context).textTheme.bodyText1,
+            ),
+          ),
+        ),
+      );
+
   SliverToBoxAdapter _buildSaveInformationButton(BuildContext context) => SliverToBoxAdapter(
         child: Padding(
           padding: const EdgeInsets.all(8.0),
-          child: SampleCircularButton(
-            borderColor: Colors.grey,
-            backgroundColor: Theme.of(context).cardColor,
-            onPressed: () => BlocProvider.of<DashboardRule>(context).updatePlayer(),
-            child: Text(
-              "Salvar informações",
-              style: Theme.of(context).textTheme.bodyText1,
+          child: Container(
+            decoration: BoxDecoration(
+              border: Border.all(color: Theme.of(context).primaryColor, width: 4),
+              borderRadius: BorderRadius.circular(16),
+            ),
+            child: SampleCircularButton(
+              borderColor: Colors.grey,
+              backgroundColor: Theme.of(context).cardColor,
+              onPressed: () => BlocProvider.of<DashboardRule>(context).updatePlayer(),
+              child: Text(
+                "Salvar informações",
+                style: Theme.of(context).textTheme.bodyText1,
+              ),
             ),
           ),
         ),
