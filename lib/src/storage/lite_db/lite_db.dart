@@ -15,6 +15,7 @@ const nome_personagem = "nome";
 const level_personagem = "level";
 const fraquezas_personagem = "fraquezas";
 const pontosdDeVida_personagem = "pontosDeVida";
+const pontosDePoder_personagem = "pontosDePoder";
 const equipamentos_personagem = "equipamentos";
 const talentos_personagem = "talentos";
 const habilidades_personagem = "habilidades";
@@ -51,9 +52,10 @@ const instintoDeSobrevivencia_pericia = "instintoDeSobrevivencia";
 const CRIA_CHARACTER_TABLE = "CREATE TABLE IF NOT EXISTS $PERSONAGEM_TABLE_NAME ("
     "$id_personagem INTEGER PRIMARY KEY, "
     "$nome_personagem TEXT, "
-    "$level_personagem INTEGER, "
+    "$level_personagem INTEGER DEFAULT 1, "
     "$fraquezas_personagem Text, "
-    "$pontosdDeVida_personagem INTEGER, "
+    "$pontosdDeVida_personagem INTEGER DEFAULT 20, "
+    "$pontosDePoder_personagem INTEGER DEFAULT 1, "
     "$equipamentos_personagem TEXT, "
     "$talentos_personagem TEXT, "
     "$habilidades_personagem TEXT, "
@@ -111,7 +113,7 @@ class ApplicationDataBase {
 
   Future<void> salvarDefaultConfigDB(Player player) async {
     await salvarAtributos(player.atributos);
-    await salvarPericias(player.pericia );
+    await salvarPericias(player.pericia);
     await salvarPersonagem(player.personagem);
   }
 
@@ -150,9 +152,9 @@ class ApplicationDataBase {
   }
 
   Future<void> updateAllTables(Player player) async {
-    updateAtributos(player.atributos );
-    updatePericia(player.pericia );
-    updatePersonagem(player.personagem ) ;
+    updateAtributos(player.atributos);
+    updatePericia(player.pericia);
+    updatePersonagem(player.personagem);
   }
 
   Future<List<Map<String, dynamic>>> _getCharacter() async {

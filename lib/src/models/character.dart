@@ -8,6 +8,7 @@ class Personagem {
   final int level;
   final String fraquezas;
   final int pontosDeVida;
+  final int pontosDePoder;
   final String equipamentos;
   final String talentos;
   final String habilidades;
@@ -19,6 +20,7 @@ class Personagem {
       "level": level,
       "fraquezas": fraquezas,
       "pontosDeVida": pontosDeVida,
+      "pontosDePoder": pontosDePoder,
       "equipamentos": equipamentos,
       "talentos": talentos,
       "habilidades": habilidades,
@@ -31,6 +33,7 @@ class Personagem {
     this.level = 1,
     this.fraquezas = "",
     this.pontosDeVida = 30,
+    this.pontosDePoder = 1,
     this.equipamentos = "",
     this.talentos = "",
     this.habilidades = "",
@@ -42,6 +45,7 @@ class Personagem {
         level = json["level"],
         fraquezas = json["fraquezas"],
         pontosDeVida = json["pontosDeVida"],
+        pontosDePoder = json["pontosDePoder"],
         equipamentos = json["equipamentos"],
         talentos = json["talentos"],
         habilidades = json["habilidades"];
@@ -52,6 +56,7 @@ class Personagem {
     int? level,
     String? fraquezas,
     int? pontosDeVida,
+    int? pontosDePoder,
     String? equipamentos,
     String? talentos,
     String? habilidades,
@@ -62,6 +67,7 @@ class Personagem {
       level: level ?? this.level,
       fraquezas: fraquezas ?? this.fraquezas,
       pontosDeVida: pontosDeVida ?? this.pontosDeVida,
+      pontosDePoder: pontosDePoder ?? this.pontosDePoder,
       equipamentos: equipamentos ?? this.equipamentos,
       talentos: talentos ?? this.talentos,
       habilidades: habilidades ?? this.habilidades,
@@ -78,6 +84,7 @@ class Personagem {
           level == other.level &&
           fraquezas == other.fraquezas &&
           pontosDeVida == other.pontosDeVida &&
+          pontosDePoder == other.pontosDePoder &&
           equipamentos == other.equipamentos &&
           talentos == other.talentos &&
           habilidades == other.habilidades;
@@ -89,6 +96,7 @@ class Personagem {
       level.hashCode ^
       fraquezas.hashCode ^
       pontosDeVida.hashCode ^
+      pontosDePoder.hashCode ^
       equipamentos.hashCode ^
       talentos.hashCode ^
       habilidades.hashCode;
